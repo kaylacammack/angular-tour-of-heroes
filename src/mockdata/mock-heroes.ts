@@ -1,4 +1,4 @@
-import { Hero } from "src/app/models/Hero";
+import { Hero } from "src/models/Hero";
 
 export const HEROES: Hero[] = [
   { id: 12, name: 'Dr. Nice' },
