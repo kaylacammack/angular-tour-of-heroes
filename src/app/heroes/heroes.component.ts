@@ -12,10 +12,9 @@ import { Subscription, take, takeWhile } from 'rxjs';
 export class HeroesComponent implements OnInit, OnDestroy {
   // Variables
   heroes: Hero[] = [];
-  selectedHero?: Hero;
   subscription: boolean = true;
 
-  constructor(private heroService: HeroService, private messageService: MessageService) {}
+  constructor(private heroService: HeroService) { }
   // Lifecylcle hook
   ngOnInit(): void {
     this.getHeroes();
@@ -24,12 +23,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
     this.subscription = false;
   }
 // Functions
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
-  }
-
-  getHeroes(): void {
+  private getHeroes(): void {
     this.heroService.getHeroes().pipe(takeWhile(() => this.subscription))
       .subscribe(heroes => this.heroes = heroes);
   }
